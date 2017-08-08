@@ -11843,6 +11843,8 @@ div#notebook {
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/Users/azo987/anaconda2/envs/python3/lib/python3.6/site-packages/sklearn/cross_validation.py:44: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
   &#34;This module will be removed in 0.20.&#34;, DeprecationWarning)
+/Users/azo987/anaconda2/envs/python3/lib/python3.6/site-packages/sklearn/learning_curve.py:23: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the functions are moved. This module will be removed in 0.20
+  DeprecationWarning)
 </pre>
 </div>
 </div>
@@ -11852,16 +11854,6 @@ div#notebook {
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Boston housing dataset has 489 data points with 4 variables each.
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/azo987/anaconda2/envs/python3/lib/python3.6/site-packages/sklearn/learning_curve.py:23: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the functions are moved. This module will be removed in 0.20
-  DeprecationWarning)
 </pre>
 </div>
 </div>
@@ -11900,7 +11892,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
@@ -11916,7 +11908,7 @@ div#notebook {
 <span class="n">median_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
 
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Show the calculated statistics</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -11945,7 +11937,7 @@ Minimum price: $105,000.00
 Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
-Standard deviation of prices: $165,340.28
+Standard deviation of prices: $165,171.13
 </pre>
 </div>
 </div>
@@ -13865,7 +13857,8 @@ TkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>In k-fold cross-validation, the data is split into k roughly equal segments. Each time the model is trained, k-1 segments are used for training, while 1 segment is used for validation. The model is trained k times using each segment as the validation sample. The average performace across all validation samples is then taken as the model performance. We might also consider the variance in performance across different segments for a given model, as high variance can be a sign of overfitting.</p>
+<p>In k-fold cross-validation, the training data is split into k roughly equal segments. Each time the model is trained, k-1 segments are used for training, while 1 segment is used for validation. The model is trained k times using each segment as the validation sample. The average performace across all validation samples is then taken as the model performance. We might also consider the variance in performance across different segments for a given model, as high variance can be a sign of overfitting.</p>
+<p>Using the KFold method in SKLearn, the default splits the data sequantially. So for example, if we have a data set of 3000 observation, and we use 3 fold cross validation, the data will be split at each index where index%1000==0. At each training, 2000 observations are used for training, while the remaining 1000 are used for validation. It's important to note that this is sequential, because it means over several rounds of analysis, we have learned more about each subset of data, and may run the risk of overfitting. Setting KFold to shuffle the data before splitting will help alleviate this problem.</p>
 <p>This technique is important to grid search for several reasons. First, if we simply evaluate performance on the training data, we will select hyperparameter values that will tend to overfit the data (deep trees, few samples per leaf). So we end up with a model that fits the training data great, but tells us little about new observations. On the other hand, if we just use a single validation sample, we can create a model that actually overfits to our validation data. Since we are training so many different models, it is possible that we find one that happens to work well on one particular validation set, but is not very generalizable.</p>
 
 </div>
