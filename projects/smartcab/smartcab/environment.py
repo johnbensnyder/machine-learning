@@ -178,14 +178,14 @@ class Environment(object):
 
     def step(self):
         """ This function is called when a time step is taken turing a trial. """
-
+        '''
         # Pretty print to terminal
         print ""
         print "/-------------------"
         print "| Step {} Results".format(self.t)
         print "\-------------------"
         print ""
-
+        '''
         if(self.verbose == True): # Debugging
             print "Environment.step(): t = {}".format(self.t)
 

@@ -144,6 +144,7 @@ class Simulator(object):
                     break
 
             # Pretty print to terminal
+            '''
             print 
             print "/-------------------------"
             if testing:
@@ -153,7 +154,7 @@ class Simulator(object):
 
             print "\-------------------------"
             print 
-
+            '''
             self.env.reset(testing)
             self.current_time = 0.0
             self.last_updated = 0.0
@@ -213,13 +214,14 @@ class Simulator(object):
                 })
 
             # Trial finished
+            '''
             if self.env.success == True:
                 print "\nTrial Completed!"
                 print "Agent reached the destination."
             else:
                 print "\nTrial Aborted!"
                 print "Agent did not reach the destination."
-
+            '''
             # Increment
             total_trials = total_trials + 1
             trial = trial + 1
@@ -254,6 +256,7 @@ class Simulator(object):
             Simulated trial data will be rendered in the terminal/command prompt. """
 
         status = self.env.step_data
+        '''
         if status and status['waypoint'] is not None: # Continuing the trial
 
             # Previous State
@@ -298,7 +301,7 @@ class Simulator(object):
                 print "epsilon = {:.4f}; alpha = {:.4f}".format(a.epsilon, a.alpha)
             else:
                 print "Agent not set to learn."
-
+    '''
                 
     def render(self, trial, testing=False):
         """ This is the GUI render display of the simulation. 
