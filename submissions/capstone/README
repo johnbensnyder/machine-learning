@@ -1,0 +1,10 @@
+The Amazon review data used for this project can be found at http://jmcauley.ucsd.edu/data/amazon/
+
+The project requires Dask, Numpy, Scipy, Pandas, matplotlib, statsmodels, and Tensorflow to complete. The analysis was run using CUDA, while this is not
+required, it will significantly improve performance. All analyses were performed in a conda environment generated with the command
+
+conda create -n capstone python=3.6 ipykernel numpy scipy pandas matplotlib statsmodels tensorflow scikit-learn
+
+Dask must be installed with pip, using the command
+
+pip install dask[complete]
